@@ -1,0 +1,1086 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+/* ===================================================
+   1. VARIABLES DE TEMA (INDUSTRIAL: AZUL & NARANJA)
+   =================================================== */
+:root {
+  /* Tipografías */
+  --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Estructura */
+  --sidebar-width: 235px;
+  --radius: 6px;
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+
+  /* Fondos y Superficies */
+  --color-bg-app: #f1f5f9;         /* Gris pizarra claro */
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-dashed: #cbd5e1;
+
+  /* Textos */
+  --color-text-main: #0f172a;       /* Carbón oscuro */
+  --color-text-muted: #64748b;      /* Gris intermedio */
+
+  /* Sidebar */
+  --color-sidebar-bg: #1e293b;      /* Azul petróleo / grafito */
+  --color-sidebar-border: #334155;
+  --color-sidebar-text: #94a3b8;
+
+  /* Acentos */
+  --color-blue-accent: #0284c7;     /* Azul técnico */
+  --color-orange: #ea580c;          /* Naranja industrial */
+  --color-orange-hover: #c2410c;
+
+  /* Alertas de Stock */
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-danger-text: #dc2626;
+}
+
+/* ===================================================
+   2. RESET & ESTILOS BASE
+   =================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-bg-app);
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ===================================================
+   3. LAYOUT GLOBAL (SIDEBAR + MAIN)
+   =================================================== */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0.85rem;
+  flex-shrink: 0;
+}
+
+.sidebar__brand {
+  margin-bottom: 2rem;
+}
+
+.sidebar .placeholder-box {
+  background-color: #334155;
+  border: 1px solid #475569;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.sidebar__nav {
+  flex: 1;
+}
+
+.sidebar__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nav-item {
+  display: block;
+  padding: 0.65rem 0.85rem;
+  color: var(--color-sidebar-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background-color: var(--color-orange);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.sidebar__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.user-badge {
+  font-weight: 500;
+}
+
+.btn--text-danger {
+  background: transparent;
+  border: 1px solid #475569;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: #fca5a5;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.btn--text-danger:hover {
+  border-color: #ef4444;
+  background-color: #7f1d1d;
+  color: #ffffff;
+}
+
+/* TOPBAR */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  height: 54px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar__breadcrumb {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* CONTENIDO PRINCIPAL */
+.dashboard-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* CARDS GLOBALES */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+}
+
+/* ===================================================
+   4. COMPONENTES COMUNES (BOTONES, INPUTS, TABS)
+   =================================================== */
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn--secondary {
+  background-color: #f8fafc;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+}
+
+.btn--secondary:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.btn--outline {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+.btn--outline:hover {
+  background-color: #f8fafc;
+  color: var(--color-text-main);
+}
+
+.btn--action,
+.btn--save {
+  background-color: var(--color-orange);
+  border: 1px solid var(--color-orange);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn--action:hover,
+.btn--save:hover {
+  background-color: var(--color-orange-hover);
+  border-color: var(--color-orange-hover);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* Pestañas (Tabs) */
+.tabs-nav {
+  display: flex;
+  gap: 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-top: -0.5rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 0.75rem 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--color-text-main);
+}
+
+.tab-btn.active {
+  color: var(--color-blue-accent);
+  font-weight: 700;
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--color-blue-accent);
+}
+
+/* Inputs de búsqueda y formularios */
+.input-search,
+.input-form {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.85rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-search:focus,
+.input-form:focus {
+  border-color: var(--color-blue-accent);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* Placeholders de wireframe */
+.placeholder-box {
+  display: block;
+  border: 1px dashed var(--color-border-dashed);
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  background-color: #fafafa;
+  border-radius: var(--radius);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/* Botón flotante '?' */
+.fab-help {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-sidebar-bg);
+  color: #ffffff;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease;
+}
+
+.fab-help:hover {
+  background-color: var(--color-orange);
+}
+
+/* ===================================================
+   5. PANTALLA 1: DASHBOARD / INICIO
+   =================================================== */
+.banner-hero {
+  position: relative;
+  height: 160px;
+  background-color: #e2e8f0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-hero__cross::before,
+.banner-hero__cross::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #cbd5e1;
+  pointer-events: none;
+}
+.banner-hero__cross::before { transform: rotate(6deg) scale(1.1); }
+.banner-hero__cross::after { transform: rotate(-6deg) scale(1.1); }
+
+.banner-hero__text {
+  position: relative;
+  z-index: 1;
+  font-size: 0.95rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.section-subtitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.kpis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kpi-card__label {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.value-placeholder {
+  border: 1px solid var(--color-border);
+  background-color: #f8fafc;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.panel__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-list__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  background-color: #fafafa;
+}
+
+.material-price {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* ===================================================
+   6. PANTALLA 2: COTIZADOR Y STOCK
+   =================================================== */
+.search-action-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.search-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.search-field__label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.table-panel {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.table-panel__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 0.04em;
+}
+
+.table-container {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  background-color: #f8fafc;
+  color: var(--color-text-main);
+  font-weight: 600;
+  border-right: 1px solid var(--color-border);
+}
+
+.data-table td {
+  border-right: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.data-table td:nth-child(3),
+.data-table td:nth-child(4),
+.data-table td:nth-child(5) {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.text-center { text-align: center; }
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-action {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.data-table tr.row--warning td {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border-bottom-color: var(--color-danger-border);
+  font-weight: 600;
+}
+
+.table-panel__note {
+  font-size: 0.8rem;
+  color: var(--color-danger-text);
+  font-style: italic;
+}
+
+/* ===================================================
+   7. PANTALLA 3: PROYECTOS
+   =================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.project-title {
+  flex: 1;
+  text-align: center;
+  font-weight: 500;
+}
+
+.project-client {
+  text-align: center;
+}
+
+.project-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-box__label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.project-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.project-progress__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.project-progress__labels span:last-child {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background-color: var(--color-orange);
+  border-radius: 999px;
+}
+
+.project-card__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* ===================================================
+   8. PANTALLA 4: CALENDARIO
+   =================================================== */
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.calendar-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-current-month {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.btn-cal-nav {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-weight: bold;
+}
+
+.btn-cal-nav:hover {
+  background-color: #f1f5f9;
+  color: var(--color-text-main);
+}
+
+.calendar-grid-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #f8fafc;
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 0.65rem 0;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-cell {
+  min-height: 85px;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-cell:nth-child(7n) {
+  border-right: none;
+}
+
+.day-number {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 0.4rem;
+}
+
+.cal-event-pill {
+  background-color: #cbd5e1;
+  color: #0f172a;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.calendar-cell.is-empty {
+  background-color: #fafafa;
+}
+
+.events-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.events-panel__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.event-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-item__row {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  color: #475569;
+}
+
+.event-item__row:last-child {
+  border-bottom: none;
+}
+
+.event-item__row--muted {
+  color: var(--color-text-muted);
+}
+
+/* ===================================================
+   9. PANTALLA 5: CONTACTO Y PERFILES
+   =================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-panel__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #334155;
+}
+
+.owner-header {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.owner-header__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.photo-placeholder {
+  position: relative;
+  background-color: #f1f5f9;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.photo-placeholder--square {
+  height: 140px;
+}
+
+.photo-placeholder--square::before,
+.photo-placeholder--square::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #cbd5e1;
+}
+
+.photo-placeholder--square::before { transform: rotate(45deg) scale(1.5); }
+.photo-placeholder--square::after { transform: rotate(-45deg) scale(1.5); }
+
+.photo-placeholder--banner {
+  height: 130px;
+  background-color: #e2e8f0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+/* ===================================================
+   10. MEDIA QUERIES (RESPONSIVE)
+   =================================================== */
+@media (max-width: 1100px) {
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 950px) {
+  .contact-grid,
+  .projects-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+  .kpis-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===================================================
+   CONTROL DE VISIBILIDAD DE TABS
+   =================================================== */
+.tab-content {
+  display: none;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tab-content.active {
+  display: flex;
+}
+
+/* ===================================================
+   MODAL FLOTANTE
+   =================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-overlay.is-visible {
+  display: flex;
+}
+
+.modal-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.btn-close:hover {
+  color: var(--color-text-main);
+}
+
+.modal-form {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Texto limpio para títulos y clientes en tarjetas de proyectos */
+.project-title-text {
+  flex: 1;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-main);
+}
+
+.project-client-text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* ===================================================
+   VISTA NUEVA COTIZACIÓN / CALCULADORA
+   =================================================== */
+.quote-calculator-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.quote-add-bar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.quote-summary-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.summary-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: 0.9rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text-muted);
+}
+
+.summary-row strong {
+  color: var(--color-text-main);
+  font-family: var(--font-mono);
+}
+
+.summary-total {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.total-highlight {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+@media (max-width: 1050px) {
+  .quote-calculator-grid {
+    grid-template-columns: 1fr;
+  }
+}

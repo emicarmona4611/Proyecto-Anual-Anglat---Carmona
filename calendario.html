@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendario - Taller</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="placeholder-box">Logo / Nombre del taller</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="index.html" class="nav-item">Inicio</a></li>
+          <li><a href="cotizador - stock.html" class="nav-item">Cotizador y Stock</a></li>
+          <li><a href="proyectos.html" class="nav-item">Proyectos</a></li>
+          <li><a href="calendario.html" class="nav-item active">Calendario</a></li>
+          <li><a href="contacto.html" class="nav-item">Perfil y Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="placeholder-box user-badge">Luis Suárez — dueño</div>
+        <button class="btn btn--text-danger">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <div class="main-wrapper">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <span class="topbar__breadcrumb">Calendario</span>
+        <button class="btn btn--outline">búsqueda global / notificaciones</button>
+      </header>
+
+      <!-- CONTENIDO DE CALENDARIO -->
+      <main class="dashboard-content">
+        <!-- PESTAÑAS (TABS) -->
+        <nav class="tabs-nav cal-tabs">
+          <button class="tab-btn active" data-cal-cat="entregas">Entregas de Trabajo</button>
+          <button class="tab-btn" data-cal-cat="materiales">Llegada de Material</button>
+          <button class="tab-btn" data-cal-cat="montajes">Fechas de Montaje</button>
+        </nav>
+
+        <!-- LAYOUT DE 2 COLUMNAS: CALENDARIO + EVENTOS -->
+        <div class="calendar-layout">
+          
+          <!-- COLUMNA IZQUIERDA: CALENDARIO -->
+          <section class="calendar-main">
+            <!-- NAVEGACIÓN DE MES -->
+            <div class="calendar-header-nav">
+              <button id="btn-prev-month" class="btn-cal-nav" aria-label="Mes anterior">←</button>
+              <h2 id="calendar-current-month" class="calendar-current-month">Agosto 2026</h2>
+              <button id="btn-next-month" class="btn-cal-nav" aria-label="Mes siguiente">→</button>
+            </div>
+
+            <!-- GRILLA DEL CALENDARIO -->
+            <div class="calendar-grid-card">
+              <!-- Días de la semana -->
+              <div class="calendar-weekdays">
+                <span>Lun</span>
+                <span>Mar</span>
+                <span>Mié</span>
+                <span>Jue</span>
+                <span>Vie</span>
+                <span>Sáb</span>
+                <span>Dom</span>
+              </div>
+
+              <!-- Celdas de días renderizadas por JS -->
+              <div class="calendar-days" id="calendar-days-container"></div>
+            </div>
+          </section>
+
+          <!-- COLUMNA DERECHA: SIDEBAR DE EVENTOS -->
+          <aside class="card events-panel">
+            <h3 id="events-panel-title" class="events-panel__title">EVENTOS — ENTREGAS DE TRABAJO</h3>
+
+            <div class="events-list" id="events-list-container">
+              <!-- Eventos iniciales -->
+              <article class="event-item" data-cat="entregas">
+                <div class="event-item__row">05/08/2026</div>
+                <div class="event-item__row">Entrega de rejas de seguridad</div>
+                <div class="event-item__row event-item__row--muted">Cliente: Gómez</div>
+              </article>
+
+              <article class="event-item" data-cat="entregas">
+                <div class="event-item__row">12/08/2026</div>
+                <div class="event-item__row">Entrega de portón levadizo</div>
+                <div class="event-item__row event-item__row--muted">Obra San Martín</div>
+              </article>
+
+              <article class="event-item" data-cat="entregas">
+                <div class="event-item__row">18/08/2026</div>
+                <div class="event-item__row">Instalación baranda inox</div>
+                <div class="event-item__row event-item__row--muted">Estudio Arq. Romero</div>
+              </article>
+            </div>
+
+            <button id="btn-open-event-modal" class="btn btn--outline btn--add-event">+ Agregar evento</button>
+          </aside>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL PARA NUEVO EVENTO -->
+  <div id="modal-event" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Agregar Nuevo Evento</h3>
+        <button id="btn-close-event-modal" class="btn-close" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <form id="form-event" class="modal-form">
+        <div class="form-group">
+          <label class="form-label" for="ev-date">Fecha</label>
+          <input type="date" id="ev-date" class="input-form" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ev-desc">Descripción del evento</label>
+          <input type="text" id="ev-desc" class="input-form" placeholder="Ej: Entrega de 20 banquetas industriales" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ev-related">Proyecto / Proveedor relacionado</label>
+          <input type="text" id="ev-related" class="input-form" placeholder="Ej: Taller Metalúrgico / Aceros S.A." required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ev-cat">Categoría</label>
+          <select id="ev-cat" class="input-form" style="cursor: pointer;">
+            <option value="entregas">Entregas de Trabajo</option>
+            <option value="materiales">Llegada de Material</option>
+            <option value="montajes">Fechas de Montaje</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-event-modal" class="btn btn--secondary">Cancelar</button>
+          <button type="submit" class="btn btn--save">Guardar evento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

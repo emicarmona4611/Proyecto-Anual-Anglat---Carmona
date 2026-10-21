@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto y Perfil - Taller</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="placeholder-box" id="sidebar-shop-name">Logo / Nombre del taller</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="index.html" class="nav-item">Inicio</a></li>
+          <li><a href="cotizador - stock.html" class="nav-item">Cotizador y Stock</a></li>
+          <li><a href="proyectos.html" class="nav-item">Proyectos</a></li>
+          <li><a href="calendario.html" class="nav-item">Calendario</a></li>
+          <li><a href="contacto.html" class="nav-item active">Perfil y Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="placeholder-box user-badge" id="sidebar-user-badge">Luis Suárez — dueño</div>
+        <button class="btn btn--text-danger">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- WRAPPER PRINCIPAL -->
+    <div class="main-wrapper">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <span class="topbar__breadcrumb">Perfil y Contacto</span>
+        <button class="btn btn--outline">búsqueda global / notificaciones</button>
+      </header>
+
+      <!-- CONTENIDO DE CONTACTO -->
+      <main class="dashboard-content">
+        <!-- TABS -->
+        <nav class="tabs-nav">
+          <button class="tab-btn active" data-tab="tab-perfil">Perfil del Taller/Dueño</button>
+          <button class="tab-btn" data-tab="tab-localizacion">Datos de Contacto y Localización</button>
+          <button class="tab-btn" data-tab="tab-redes">Redes Sociales</button>
+        </nav>
+
+        <!-- PESTAÑA 1: PERFIL DEL TALLER Y DUEÑO (ACTIVA) -->
+        <div id="tab-perfil" class="tab-content active">
+          <div class="contact-grid">
+
+            <!-- COLUMNA 1: DATOS DEL DUEÑO -->
+            <section class="card form-panel">
+              <h2 class="form-panel__title">DATOS DEL DUEÑO</h2>
+
+              <form id="form-owner" class="form-panel__body">
+                <div class="owner-header">
+                  <div class="photo-placeholder photo-placeholder--square">
+                    <span>foto</span>
+                  </div>
+                  <div class="owner-header__fields">
+                    <div class="placeholder-box placeholder-box--sm">w-32 h-7</div>
+                    
+                    <div class="form-group">
+                      <label class="form-label" for="owner-name">Nombre completo</label>
+                      <input type="text" id="owner-name" class="input-form" placeholder="Ej: Luis Suárez" required />
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="owner-role">Ocupación / rol</label>
+                      <input type="text" id="owner-role" class="input-form" placeholder="Ej: Herrero / Dueño" required />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="owner-city">Ciudad</label>
+                  <input type="text" id="owner-city" class="input-form" placeholder="Ej: Mendoza, Argentina" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="owner-exp">Años de experiencia</label>
+                  <input type="number" id="owner-exp" class="input-form" min="0" placeholder="Ej: 12" />
+                </div>
+
+                <button type="submit" class="btn btn--save">Guardar cambios</button>
+              </form>
+            </section>
+
+            <!-- COLUMNA 2: DATOS DEL TALLER -->
+            <section class="card form-panel">
+              <h2 class="form-panel__title">DATOS DEL TALLER</h2>
+
+              <form id="form-shop" class="form-panel__body">
+                <div class="photo-placeholder photo-placeholder--banner">
+                  <div class="banner-hero__cross"></div>
+                  <span class="banner-hero__text">foto del taller</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="shop-name">Nombre del taller</label>
+                  <input type="text" id="shop-name" class="input-form" placeholder="Ej: Taller Metalúrgico Suárez" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="shop-desc">Descripción / especialidad</label>
+                  <input type="text" id="shop-desc" class="input-form" placeholder="Ej: Carpintería metálica, tinglados y estructuras" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="shop-year">Año de fundación</label>
+                  <input type="number" id="shop-year" class="input-form" min="1950" max="2099" placeholder="Ej: 2014" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="shop-area">Superficie del taller (m²)</label>
+                  <input type="number" id="shop-area" class="input-form" min="0" placeholder="Ej: 350" />
+                </div>
+
+                <button type="submit" class="btn btn--save">Guardar cambios</button>
+              </form>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- PESTAÑA 2: CONTACTO Y LOCALIZACIÓN -->
+        <div id="tab-localizacion" class="tab-content">
+          <section class="card">
+            <h2 class="panel__title">Datos de Contacto y Localización</h2>
+            <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Configuración de dirección fiscal, teléfono, correo de presupuestos y ubicación en mapa.</p>
+            <div class="form-group" style="max-width: 480px;">
+              <label class="form-label">Dirección física</label>
+              <input type="text" class="input-form" placeholder="Ej: Calle Principal 1234, Parque Industrial" />
+            </div>
+          </section>
+        </div>
+
+        <!-- PESTAÑA 3: REDES SOCIALES -->
+        <div id="tab-redes" class="tab-content">
+          <section class="card">
+            <h2 class="panel__title">Redes Sociales</h2>
+            <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Enlaces directos para presupuestos por WhatsApp, perfil de Instagram del taller y portfolio web.</p>
+            <div class="form-group" style="max-width: 480px;">
+              <label class="form-label">Número de WhatsApp</label>
+              <input type="text" class="input-form" placeholder="Ej: +54 9 261 1234567" />
+            </div>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

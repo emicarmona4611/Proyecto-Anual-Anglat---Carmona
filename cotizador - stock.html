@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cotizador y Stock - Taller</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="placeholder-box">Logo / Nombre del taller</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="index.html" class="nav-item">Inicio</a></li>
+          <li><a href="cotizador - stock.html" class="nav-item active">Cotizador y Stock</a></li>
+          <li><a href="proyectos.html" class="nav-item">Proyectos</a></li>
+          <li><a href="calendario.html" class="nav-item">Calendario</a></li>
+          <li><a href="contacto.html" class="nav-item">Perfil y Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="placeholder-box user-badge">Luis Suárez — dueño</div>
+        <button class="btn btn--text-danger">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- WRAPPER PRINCIPAL -->
+    <div class="main-wrapper">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <span class="topbar__breadcrumb">Cotizador y Stock</span>
+        <button class="btn btn--outline">búsqueda global / notificaciones</button>
+      </header>
+
+      <!-- CONTENIDO DE COTIZADOR Y STOCK -->
+      <main class="dashboard-content">
+        <!-- PESTAÑAS (TABS) -->
+        <nav class="tabs-nav">
+          <button class="tab-btn active" data-tab="tab-catalogo">Catálogo de Materiales</button>
+          <button class="tab-btn" data-tab="tab-cotizacion">Nueva Cotización</button>
+          <button class="tab-btn" data-tab="tab-mano-obra">Precio Mano de Obra</button>
+        </nav>
+
+        <!-- PESTAÑA 1: CATÁLOGO DE MATERIALES (ACTIVA) -->
+        <div id="tab-catalogo" class="tab-content active">
+          <!-- BARRA DE BÚSQUEDA Y ACCIÓN -->
+          <section class="search-action-bar">
+            <div class="search-field">
+              <label for="search-material" class="search-field__label">Buscar material</label>
+              <input 
+                type="text" 
+                id="search-material" 
+                class="input-search" 
+                placeholder="input búsqueda" 
+              />
+            </div>
+            <button id="btn-open-modal" class="btn btn--outline btn--action">+ Agregar material</button>
+          </section>
+
+          <!-- PANEL DE TABLA DE MATERIALES -->
+          <section class="card table-panel">
+            <h2 class="table-panel__title">LISTA DE MATERIALES Y STOCK</h2>
+
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Material / Insumo</th>
+                    <th>Unidad</th>
+                    <th>Stock actual</th>
+                    <th>Stock mínimo</th>
+                    <th>Precio unitario (ARS)</th>
+                    <th class="text-center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Tubo estructural 40x40x1.6</td>
+                    <td>Barra 6m</td>
+                    <td>14</td>
+                    <td>5</td>
+                    <td>$ 28.500,00</td>
+                    <td class="text-center actions-cell">
+                      <button class="btn-action" title="Editar">✏️</button>
+                      <button class="btn-action" title="Eliminar">🗑️</button>
+                    </td>
+                  </tr>
+
+                  <tr class="row--warning">
+                    <td>Perfil ángulo 1" x 1/8"</td>
+                    <td>Barra 6m</td>
+                    <td>2</td>
+                    <td>6</td>
+                    <td>$ 14.200,00</td>
+                    <td class="text-center actions-cell">
+                      <button class="btn-action" title="Editar">✏️</button>
+                      <button class="btn-action" title="Eliminar">🗑️</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td class="text-center">—</td>
+                  </tr>
+                  <tr>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td class="text-center">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="table-panel__note">* Resaltar en rojo cuando stock &lt; mínimo</p>
+          </section>
+        </div>
+
+        <!-- PESTAÑA 2: NUEVA COTIZACIÓN -->
+        <div id="tab-cotizacion" class="tab-content">
+          <div class="quote-calculator-grid">
+            
+            <!-- Columna izquierda: Armado del presupuesto -->
+            <section class="card form-panel">
+              <h2 class="panel__title">Calculadora de Presupuesto / Despiece</h2>
+
+              <!-- Datos básicos del trabajo -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label" for="quote-project-name">Nombre de la obra / estructura</label>
+                  <input type="text" id="quote-project-name" class="input-form" placeholder="Ej: Reja estilo colonial 3x2m" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="quote-client-name">Cliente</label>
+                  <input type="text" id="quote-client-name" class="input-form" placeholder="Ej: Juan Pérez" required />
+                </div>
+              </div>
+
+              <!-- Selector de materiales -->
+              <div class="quote-materials-section">
+                <h3 class="section-subtitle">Materiales necesarios</h3>
+                <div class="quote-add-bar">
+                  <div class="form-group" style="flex: 2;">
+                    <label class="form-label">Seleccionar del catálogo</label>
+                    <select id="quote-material-select" class="input-form" style="cursor: pointer;">
+                      <!-- Se llena dinámicamente con los materiales cargados -->
+                    </select>
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Cantidad (unidades/barras)</label>
+                    <input type="number" id="quote-material-qty" class="input-form" min="0.1" step="any" value="1" />
+                  </div>
+                  <button type="button" id="btn-add-quote-item" class="btn btn--secondary" style="align-self: flex-end; height: 40px;">+ Agregar</button>
+                </div>
+
+                <!-- Tabla de despiece agregado -->
+                <div class="table-container" style="margin-top: 1rem;">
+                  <table class="data-table" id="quote-items-table">
+                    <thead>
+                      <tr>
+                        <th>Material</th>
+                        <th>Cant.</th>
+                        <th>P. Unitario</th>
+                        <th>Subtotal</th>
+                        <th class="text-center">Quitar</th>
+                      </tr>
+                    </thead>
+                    <tbody id="quote-items-body">
+                      <!-- Filas de despiece agregadas por JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Mano de obra y extras -->
+              <div class="form-row-2" style="margin-top: 0.5rem;">
+                <div class="form-group">
+                  <label class="form-label" for="quote-hours">Horas de trabajo (corte/soldadura/armado)</label>
+                  <input type="number" id="quote-hours" class="input-form" min="0" step="any" value="8" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="quote-hour-rate">Valor hora de mano de obra (ARS)</label>
+                  <input type="number" id="quote-hour-rate" class="input-form" min="0" step="any" value="9500" />
+                </div>
+              </div>
+
+              <!-- Porcentajes de ajuste -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label" for="quote-waste-margin">Margen por desperdicio / scrap (%)</label>
+                  <input type="number" id="quote-waste-margin" class="input-form" min="0" max="100" value="10" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="quote-profit-margin">Margen de ganancia / taller (%)</label>
+                  <input type="number" id="quote-profit-margin" class="input-form" min="0" max="500" value="30" />
+                </div>
+              </div>
+            </section>
+
+            <!-- Columna derecha: Resumen de Costos y Total -->
+            <section class="card quote-summary-panel">
+              <h2 class="panel__title">Resumen de Costos</h2>
+
+              <div class="summary-breakdown">
+                <div class="summary-row">
+                  <span>Costo materiales base:</span>
+                  <strong id="sum-materials-base">$ 0,00</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Desperdicio estimado:</span>
+                  <strong id="sum-waste">$ 0,00</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Total costo de materiales:</span>
+                  <strong id="sum-materials-total">$ 0,00</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Costo mano de obra:</span>
+                  <strong id="sum-labor">$ 76.000,00</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Margen de ganancia:</span>
+                  <strong id="sum-profit">$ 0,00</strong>
+                </div>
+                
+                <hr style="border: none; border-top: 1px solid var(--color-border); margin: 0.5rem 0;" />
+                
+                <div class="summary-row summary-total">
+                  <span>PRESUPUESTO TOTAL:</span>
+                  <span id="sum-grand-total" class="total-highlight">$ 0,00</span>
+                </div>
+              </div>
+
+              <div class="quote-actions" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                <button type="button" id="btn-save-as-project" class="btn btn--save btn--full">Guardar como Presupuesto de Proyecto</button>
+                <button type="button" id="btn-reset-quote" class="btn btn--secondary btn--full">Limpiar calculadora</button>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- PESTAÑA 3: PRECIO MANO DE OBRA -->
+        <div id="tab-mano-obra" class="tab-content">
+          <section class="card">
+            <h2 class="panel__title">Precio Mano de Obra</h2>
+            <p style="color: var(--color-text-muted);">Valores de hora hombre para soldadura, armado, corte y montaje.</p>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+<!-- MODAL PARA AGREGAR MATERIAL -->
+  <div id="modal-material" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Agregar Nuevo Material</h3>
+        <button id="btn-close-modal" class="btn-close" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <form id="form-material" class="modal-form">
+        <div class="form-group">
+          <label class="form-label" for="mat-nombre">Material / Insumo</label>
+          <input type="text" id="mat-nombre" class="input-form" placeholder="Ej: Planchuela 1 1/2 x 3/16" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="mat-unidad">Unidad</label>
+          <input type="text" id="mat-unidad" class="input-form" placeholder="Ej: Barra 6m / kg / unidad" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="mat-stock">Stock actual</label>
+            <input type="number" id="mat-stock" class="input-form" min="0" step="any" placeholder="0" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="mat-minimo">Stock mínimo</label>
+            <input type="number" id="mat-minimo" class="input-form" min="0" step="any" placeholder="0" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="mat-precio">Precio unitario (ARS)</label>
+          <input type="number" id="mat-precio" class="input-form" min="0" step="any" placeholder="Ej: 15400" required />
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-modal" class="btn btn--secondary">Cancelar</button>
+          <button type="submit" class="btn btn--save">Guardar material</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

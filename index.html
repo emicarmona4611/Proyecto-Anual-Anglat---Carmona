@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio - Gestión Metalúrgica</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="placeholder-box">Logo / Nombre del taller</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="index.html" class="nav-item active">Inicio</a></li>
+          <li><a href="cotizador - stock.html" class="nav-item">Cotizador y Stock</a></li>
+          <li><a href="proyectos.html" class="nav-item">Proyectos</a></li>
+          <li><a href="calendario.html" class="nav-item">Calendario</a></li>
+          <li><a href="contacto.html" class="nav-item">Perfil y Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="placeholder-box user-badge">Luis Suárez — dueño</div>
+        <button class="btn btn--text-danger">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <div class="main-wrapper">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <span class="topbar__breadcrumb">Inicio</span>
+        <button class="btn btn--outline">acciones / filtros globales</button>
+      </header>
+
+      <!-- CONTENIDO DEL DASHBOARD -->
+      <main class="dashboard-content">
+        <h1 class="page-title">Inicio</h1>
+
+        <!-- Banner / Hero destacado -->
+        <section class="banner-hero">
+          <div class="banner-hero__cross"></div>
+          <p class="banner-hero__text">Taller Metalúrgico — Fabricación, Estructuras y Herrería</p>
+        </section>
+
+        <!-- Indicadores principales (KPI Cards) -->
+        <section class="kpis-section">
+          <h2 class="section-subtitle">Indicadores principales</h2>
+          <div class="kpis-grid">
+            <article class="card kpi-card">
+              <span class="kpi-card__label">Proyectos activos</span>
+              <div id="kpi-proyectos-activos" class="value-placeholder">0</div>
+            </article>
+
+            <article class="card kpi-card">
+              <span class="kpi-card__label">Toneladas procesadas</span>
+              <div id="kpi-toneladas" class="value-placeholder">18.5 Tn</div>
+            </article>
+
+            <article class="card kpi-card">
+              <span class="kpi-card__label">Clientes activos</span>
+              <div id="kpi-clientes-activos" class="value-placeholder">0</div>
+            </article>
+
+            <article class="card kpi-card">
+              <span class="kpi-card__label">Años de experiencia</span>
+              <div id="kpi-experiencia" class="value-placeholder">12 años</div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Grilla inferior (Proyectos recientes y Precios de materiales) -->
+        <div class="bottom-grid">
+          <!-- Columna: Proyectos recientes -->
+          <section class="card panel">
+            <h2 class="panel__title">Proyectos recientes</h2>
+            <ul class="item-list" id="home-recent-projects">
+              <!-- Renderizado dinámico desde JS -->
+            </ul>
+          </section>
+
+          <!-- Columna: Precios de materiales -->
+          <section class="card panel">
+            <h2 class="panel__title">Precios de materiales</h2>
+            <ul class="item-list" id="home-material-prices">
+              <!-- Renderizado dinámico desde JS -->
+            </ul>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Botón flotante de ayuda -->
+    <button class="fab-help" aria-label="Ayuda">?</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyectos - Taller</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="placeholder-box">Logo / Nombre del taller</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="index.html" class="nav-item">Inicio</a></li>
+          <li><a href="cotizador - stock.html" class="nav-item">Cotizador y Stock</a></li>
+          <li><a href="proyectos.html" class="nav-item active">Proyectos</a></li>
+          <li><a href="calendario.html" class="nav-item">Calendario</a></li>
+          <li><a href="contacto.html" class="nav-item">Perfil y Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="placeholder-box user-badge">Luis Suárez — dueño</div>
+        <button class="btn btn--text-danger">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <div class="main-wrapper">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <span class="topbar__breadcrumb">Proyectos</span>
+        <button class="btn btn--outline">búsqueda global / notificaciones</button>
+      </header>
+
+      <!-- CONTENIDO DE PROYECTOS -->
+      <main class="dashboard-content">
+        <!-- PESTAÑAS DE FILTRO POR ESTADO -->
+        <nav class="tabs-nav project-tabs">
+          <button class="tab-btn active" data-filter="en-curso">En Curso</button>
+          <button class="tab-btn" data-filter="finalizados">Finalizados</button>
+          <button class="tab-btn" data-filter="presupuestos">Presupuestos</button>
+        </nav>
+
+        <!-- BARRA DE BÚSQUEDA Y ACCIÓN -->
+        <section class="search-action-bar">
+          <div class="search-field">
+            <input 
+              type="text" 
+              id="search-project" 
+              class="input-search" 
+              placeholder="Buscar proyecto o cliente..." 
+            />
+          </div>
+          <button id="btn-open-project-modal" class="btn btn--outline btn--action">+ Nuevo proyecto</button>
+        </section>
+
+        <!-- GRILLA DE PROYECTOS -->
+        <div class="projects-grid" id="projects-container">
+          
+          <!-- Proyecto 1: En Curso -->
+          <article class="card project-card" data-status="en-curso">
+            <div class="project-card__header">
+              <div class="project-title-text">Estructura Galpón Depósito</div>
+              <span class="badge">En Curso</span>
+            </div>
+            <div class="project-client-text">Logística del Valle S.A.</div>
+            <div class="project-stats-grid">
+              <div class="stat-box">
+                <span class="stat-box__label">Inicio</span>
+                <div class="value-placeholder">01/08/26</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Entrega est.</span>
+                <div class="value-placeholder">30/09/26</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Presupuesto</span>
+                <div class="value-placeholder">$ 3.450.000</div>
+              </div>
+            </div>
+            <div class="project-progress">
+              <div class="project-progress__labels">
+                <span>Avance</span>
+                <span class="progress-percent">65%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar__fill" style="width: 65%;"></div>
+              </div>
+            </div>
+            <div class="project-card__actions">
+              <button class="btn btn--secondary btn--full">Ver detalle</button>
+              <button class="btn btn--secondary btn--full">Ver presupuesto</button>
+            </div>
+          </article>
+
+          <!-- Proyecto 2: En Curso -->
+          <article class="card project-card" data-status="en-curso">
+            <div class="project-card__header">
+              <div class="project-title-text">Portón Corredizo Automatizado</div>
+              <span class="badge">En Curso</span>
+            </div>
+            <div class="project-client-text">Martín Gómez</div>
+            <div class="project-stats-grid">
+              <div class="stat-box">
+                <span class="stat-box__label">Inicio</span>
+                <div class="value-placeholder">10/08/26</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Entrega est.</span>
+                <div class="value-placeholder">25/08/26</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Presupuesto</span>
+                <div class="value-placeholder">$ 780.000</div>
+              </div>
+            </div>
+            <div class="project-progress">
+              <div class="project-progress__labels">
+                <span>Avance</span>
+                <span class="progress-percent">40%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar__fill" style="width: 40%;"></div>
+              </div>
+            </div>
+            <div class="project-card__actions">
+              <button class="btn btn--secondary btn--full">Ver detalle</button>
+              <button class="btn btn--secondary btn--full">Ver presupuesto</button>
+            </div>
+          </article>
+
+          <!-- Proyecto 3: Finalizado -->
+          <article class="card project-card" data-status="finalizados">
+            <div class="project-card__header">
+              <div class="project-title-text">Lote 350 Bicleteros Urbanos</div>
+              <span class="badge">Finalizado</span>
+            </div>
+            <div class="project-client-text">Municipio / Obra Pública</div>
+            <div class="project-stats-grid">
+              <div class="stat-box">
+                <span class="stat-box__label">Inicio</span>
+                <div class="value-placeholder">15/06/26</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Entrega est.</span>
+                <div class="value-placeholder">30/07/26</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Presupuesto</span>
+                <div class="value-placeholder">$ 5.120.000</div>
+              </div>
+            </div>
+            <div class="project-progress">
+              <div class="project-progress__labels">
+                <span>Avance</span>
+                <span class="progress-percent">100%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar__fill" style="width: 100%;"></div>
+              </div>
+            </div>
+            <div class="project-card__actions">
+              <button class="btn btn--secondary btn--full">Ver detalle</button>
+              <button class="btn btn--secondary btn--full">Ver presupuesto</button>
+            </div>
+          </article>
+
+          <!-- Proyecto 4: Presupuesto pendiente -->
+          <article class="card project-card" data-status="presupuestos">
+            <div class="project-card__header">
+              <div class="project-title-text">Escalera Caracol Perfil U</div>
+              <span class="badge">Presupuesto</span>
+            </div>
+            <div class="project-client-text">Estudio Arq. Romero</div>
+            <div class="project-stats-grid">
+              <div class="stat-box">
+                <span class="stat-box__label">Inicio</span>
+                <div class="value-placeholder">A definir</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Entrega est.</span>
+                <div class="value-placeholder">A definir</div>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box__label">Presupuesto</span>
+                <div class="value-placeholder">$ 1.250.000</div>
+              </div>
+            </div>
+            <div class="project-progress">
+              <div class="project-progress__labels">
+                <span>Avance</span>
+                <span class="progress-percent">0%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar__fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="project-card__actions">
+              <button class="btn btn--secondary btn--full">Ver detalle</button>
+              <button class="btn btn--secondary btn--full">Ver presupuesto</button>
+            </div>
+          </article>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL PARA NUEVO PROYECTO -->
+  <div id="modal-project" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Registrar Nuevo Proyecto</h3>
+        <button id="btn-close-project-modal" class="btn-close" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <form id="form-project" class="modal-form">
+        <div class="form-group">
+          <label class="form-label" for="proj-name">Nombre del proyecto</label>
+          <input type="text" id="proj-name" class="input-form" placeholder="Ej: Baranda acero inox para balcón" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="proj-client">Cliente</label>
+          <input type="text" id="proj-client" class="input-form" placeholder="Ej: Juan Pérez" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="proj-status">Estado inicial</label>
+            <select id="proj-status" class="input-form" style="cursor: pointer;">
+              <option value="en-curso">En Curso</option>
+              <option value="presupuestos">Presupuesto</option>
+              <option value="finalizados">Finalizado</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="proj-progress">Avance inicial (%)</label>
+            <input type="number" id="proj-progress" class="input-form" min="0" max="100" value="0" required />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="proj-start">Fecha Inicio</label>
+            <input type="date" id="proj-start" class="input-form" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="proj-end">Entrega estimada</label>
+            <input type="date" id="proj-end" class="input-form" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="proj-budget">Presupuesto (ARS)</label>
+          <input type="number" id="proj-budget" class="input-form" min="0" step="any" placeholder="Ej: 450000" required />
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-project-modal" class="btn btn--secondary">Cancelar</button>
+          <button type="submit" class="btn btn--save">Guardar proyecto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
